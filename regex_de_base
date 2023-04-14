@@ -1,0 +1,26 @@
+Sub regex_base()
+
+    Dim regex As New RegExp
+    Dim mc As MatchCollection
+    Dim item As Variant
+    Dim text As Variant
+    Dim compteur As Integer
+    Dim resultat() As Variant
+    
+    
+    text = Cells(9, 3).Value
+    
+    regex.Global = True
+    '\w : any word character
+    '+  : 1 ou plusieurs
+    '\s : any space character
+    '\W : any non word character (e.g. : "&")
+    regex.pattern = "[\w+\s*\W]+"
+    
+    Set mc = regex.Execute(text)
+    
+    For Each item In mc
+        MsgBox item
+    Next item
+
+End Sub
